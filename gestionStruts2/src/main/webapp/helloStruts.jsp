@@ -8,6 +8,9 @@
 <title>Hello struts2!</title>
 </head>
 <body>
-<h2><s:property value="messageStore.message"/>Hello struts 2</h2>
+<h2><s:property value="messageStore.message"/></h2>
+<h2>Hello <s:property value="name"/></h2>
+
+<h2>Hello <s:property value="personne"/></h2>
 </body>
 </html>
