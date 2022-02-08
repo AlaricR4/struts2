@@ -5,10 +5,13 @@
         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 	<!-- bean definitions here -->
-	<bean id="daoEmployee" class="fr.formation.inti.dao.EmployeeDao" factory-method="createInstance"></bean>
+	<bean id="daoEmployee" class="fr.formation.inti.dao.EmployeeDao" ></bean>
 	<bean id="serviceEmployee"
-		class="fr.formation.inti.service.EmployeeService">
-		<property name="dao" ref="daoEpmloyee"></property>
+		class="fr.formation.inti.service.EmployeeService" autowire="byType">
+	<!--  	<property name="dao" ref="daoEmployee"></property>-->
+<!--	<constructor-arg name="dao" ref="dapEmployee"/>-->
+	<!--<property name="message" value="exemple inject value"></property>-->
+	
 		</bean>
 		
 </beans>

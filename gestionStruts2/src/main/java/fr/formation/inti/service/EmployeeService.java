@@ -6,20 +6,27 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import fr.formation.inti.dao.IEmployeeDao;
 import fr.formation.inti.entity.Employee;
 
 @Service
-
+@Transactional
 public class EmployeeService implements IEmployeeService {
 	private final Log log = LogFactory.getLog(EmployeeService.class);
 
-	@Autowired
+	//@Autowired
 	private IEmployeeDao dao;
 	
 	public EmployeeService() {
 		log.info("create new EmployeeService()");
+		
+	}
+	@Autowired
+	public EmployeeService(IEmployeeDao dao) {
+		this.dao=dao;
+		log.info("create new EmployeeService(dao)");
 		
 	}
 
@@ -50,12 +57,9 @@ public class EmployeeService implements IEmployeeService {
 	@Override
 	public List<Employee> findAll() {
 
-		dao.beginTransaction();
-		List<Employee> list = dao.findAll();
-		dao.commitTransaction();
-		dao.close();
-		return list;
+		return dao.findAll();
 	}
+	
 	public void setDao(IEmployeeDao dao) {
 		this.dao = dao;
 	}
